@@ -11,6 +11,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="48dp"
+        android:backgroundTint="#8BC34A"
         android:onClick="rpsButtonSelected"
         android:scaleType="fitCenter"
         android:tag="1"
@@ -24,6 +25,7 @@
         android:id="@+id/paperButton"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:backgroundTint="#F44336"
         android:onClick="rpsButtonSelected"
         android:scaleType="fitCenter"
         android:tag="2"
@@ -37,6 +39,7 @@
         android:id="@+id/scissorButton"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:backgroundTint="#00BCD4"
         android:onClick="rpsButtonSelected"
         android:scaleType="fitCenter"
         android:tag="3"
@@ -113,7 +116,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
-        android:text="Play..."
+        android:text="Won Lost Tie"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -124,6 +127,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:text="Rock"
         app:layout_constraintEnd_toStartOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -132,6 +136,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:text="Paper"
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 

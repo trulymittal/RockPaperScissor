@@ -15,13 +15,15 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
 
-    TextView scoreTextView, wonLostTextView, userSelectionTextView, compSelectionTextView;
+    TextView scoreTextView,
+            wonLostTextView,
+            userSelectionTextView,
+            compSelectionTextView;
 
     int userScore = 0;
     int compScore = 0;
 
     Random random = new Random();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +34,14 @@ public class MainActivity extends AppCompatActivity {
         wonLostTextView = findViewById(R.id.wonLostTextView);
         compSelectionTextView = findViewById(R.id.compSelectionTextView);
         userSelectionTextView = findViewById(R.id.userSelectionTextView);
+
+        wonLostTextView.setText("");
+        compSelectionTextView.setText("");
+        userSelectionTextView.setText("");
     }
 
     public void rpsButtonSelected(View view) {
         Log.i(TAG, "rpsButtonSelected: " + view.getTag());
-
         int userSelection = Integer.parseInt(view.getTag().toString());
         match(userSelection);
     }
@@ -51,7 +56,27 @@ public class MainActivity extends AppCompatActivity {
 
         int low = 1;
         int high = 3;
+
+        /*
+        The method call returns a random int value between 0 (inclusive) and high (exclusive).
+        That's why we are adding low (to include the low value also).
+         */
+
         int compSelection = random.nextInt(high) + low;
+
+        /* Can find the attached logic sheet inside the drawable folder
+        Name: Logic For Rock Paper Scissor.png */
+
+        if (userSelection == compSelection) {
+            wonLostTextView.setText("It's a Tie !");
+        } else if ( (userSelection - compSelection) % 3 == 1 ) {
+            wonLostTextView.setText("Yay, you Won !");
+            userScore++;
+        } else {
+            wonLostTextView.setText("Oops, you Lost !");
+            compScore++;
+        }
+        setScoreTextView(userScore, compScore);
 
         switch (compSelection) {
             case 1:
@@ -63,76 +88,30 @@ public class MainActivity extends AppCompatActivity {
             case 3:
                 compSelectionTextView.setText("Scissor");
                 break;
+            default:
+                compSelectionTextView.setText("");
         }
-
-        /*The method call returns a pseudorandom, uniformly distributed int value between 0 (inclusive) and n (exclusive).*/
-
-        Log.i(TAG, "matchWithComp: userSelection: " + String.valueOf(userSelection));
-        Log.e(TAG, "matchWithComp: compSelection: " + String.valueOf(compSelection));
 
         switch (userSelection) {
             case 1:
                 userSelectionTextView.setText("Rock");
-                switch (compSelection) {
-                    case 1:
-                        wonLostTextView.setText("It's a Tie !");
-                        break;
-                    case 2:
-                        wonLostTextView.setText("Oops, you Lost !");
-                        compScore++;
-                        break;
-                    case 3:
-                        wonLostTextView.setText("Yay, you Won !");
-                        userScore++;
-                        break;
-                }
                 break;
-
             case 2:
                 userSelectionTextView.setText("Paper");
-                switch (compSelection) {
-                    case 1:
-                        wonLostTextView.setText("Yay, you Won !");
-                        userScore++;
-                        break;
-                    case 2:
-                        wonLostTextView.setText("It's a Tie!");
-                        break;
-                    case 3:
-                        wonLostTextView.setText("Oops, you Lost !");
-                        compScore++;
-                        break;
-                }
                 break;
-
             case 3:
                 userSelectionTextView.setText("Scissor");
-                switch (compSelection) {
-                    case 1:
-                        wonLostTextView.setText("Oops, you Lost !");
-                        compScore++;
-                        break;
-                    case 2:
-                        wonLostTextView.setText("Yay, you Won !");
-                        userScore++;
-                        break;
-                    case 3:
-                        wonLostTextView.setText("It's a Tie!");
-                        break;
-                }
                 break;
+            default:
+                userSelectionTextView.setText("");
         }
-
         setScoreTextView(userScore, compScore);
-
     }
-
-
 
     public void resetGame(View view) {
         userScore = 0;
         compScore = 0;
-        wonLostTextView.setText("Play...");
+        wonLostTextView.setText("");
         compSelectionTextView.setText("");
         setScoreTextView(userScore, compScore);
         userSelectionTextView.setText("");
@@ -144,6 +123,5 @@ public class MainActivity extends AppCompatActivity {
         String scoreString = String.valueOf(userScore) + " : " + String.valueOf(compScore);
         scoreTextView.setText(scoreString);
     }
-
 
 }
