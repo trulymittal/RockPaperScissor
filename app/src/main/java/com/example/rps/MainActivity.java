@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         int compSelection = random.nextInt(high) + low;
 
         /* Can find the attached logic sheet inside the drawable folder
-        Name: Logic For Rock Paper Scissor.png */
+        Name: logic_for_rock_paper_scissor.png */
 
         if (userSelection == compSelection) {
             wonLostTextView.setText("It's a Tie !");
